@@ -32,6 +32,27 @@ Personal-use fork of [gureum/gureum](https://github.com/gureum/gureum) for a ver
 
 This fork is not trying to be a general-purpose layout framework. It exists to make one specific Kanata-first setup usable.
 
+## Dependencies
+
+Minimum assumptions for a fresh Mac:
+
+- `macOS`
+- full `Xcode.app`
+- working `xcode-select`
+- `git`
+- `make`
+- the parent environment repo that carries the matching `Kanata` config
+
+Recommended preflight:
+
+```sh
+sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+sudo xcodebuild -runFirstLaunch
+make init
+```
+
+If stock Gureum is already installed, removing or disabling it before testing this fork is cleaner. The fork can coexist with stock Gureum, but a clean machine is easier to migrate and debug.
+
 ## Build
 
 1. Clone the repo and fetch submodules.
@@ -47,6 +68,8 @@ This fork is not trying to be a general-purpose layout framework. It exists to m
 6. Add `구름 Kanata > 두벌식 Colemak-DH Matrix`.
 
 The installer builds a debug app, signs it ad-hoc, installs it to `~/Library/Input Methods`, refreshes Launch Services, kills the running input method, and reopens it.
+
+On a fresh machine, this fork is meant to be installed after the parent `Kanata` environment is already working. It is not a standalone keyboard-stack replacement.
 
 ## Runtime Assumptions
 
