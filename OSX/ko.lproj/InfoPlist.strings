@@ -1,21 +1,22 @@
 /* Localized versions of Info.plist keys */
 
-org.youknowone.inputmethod.Gureum.system = "로마자";
-org.youknowone.inputmethod.Gureum.qwerty = "쿼티 (제거예정)";
-org.youknowone.inputmethod.Gureum.dvorak = "드보락 (제거예정)";
-org.youknowone.inputmethod.Gureum.colemak = "콜맥 (제거예정)";
-org.youknowone.inputmethod.Gureum.han2 = "두벌식";
-org.youknowone.inputmethod.Gureum.han2classic = "두벌식 옛글";
-org.youknowone.inputmethod.Gureum.han3final = "세벌식 최종";
-org.youknowone.inputmethod.Gureum.han390 = "세벌식 390";
-org.youknowone.inputmethod.Gureum.han3noshift = "세벌식 순아래";
-org.youknowone.inputmethod.Gureum.han3classic = "세벌식 옛글";
-org.youknowone.inputmethod.Gureum.han3layout2 = "세벌식 두벌식 배치 (시험용)";
-org.youknowone.inputmethod.Gureum.hanroman = "한글 로마자";
-org.youknowone.inputmethod.Gureum.hanahnmatae = "안마태";
-org.youknowone.inputmethod.Gureum.han3-2011 = "세벌식 2011";
-org.youknowone.inputmethod.Gureum.han3-2012 = "세벌식 2012";
-org.youknowone.inputmethod.Gureum.han3finalnoshift = "세벌식 최종 순아래";
+org.haneol.inputmethod.GureumKanata.system = "로마자";
+org.haneol.inputmethod.GureumKanata.qwerty = "쿼티 (제거예정)";
+org.haneol.inputmethod.GureumKanata.dvorak = "드보락 (제거예정)";
+org.haneol.inputmethod.GureumKanata.colemak = "콜맥 (제거예정)";
+org.haneol.inputmethod.GureumKanata.han2 = "두벌식";
+org.haneol.inputmethod.GureumKanata.han2colemakdh = "두벌식 Colemak-DH Matrix";
+org.haneol.inputmethod.GureumKanata.han2classic = "두벌식 옛글";
+org.haneol.inputmethod.GureumKanata.han3final = "세벌식 최종";
+org.haneol.inputmethod.GureumKanata.han390 = "세벌식 390";
+org.haneol.inputmethod.GureumKanata.han3noshift = "세벌식 순아래";
+org.haneol.inputmethod.GureumKanata.han3classic = "세벌식 옛글";
+org.haneol.inputmethod.GureumKanata.han3layout2 = "세벌식 두벌식 배치 (시험용)";
+org.haneol.inputmethod.GureumKanata.hanroman = "한글 로마자";
+org.haneol.inputmethod.GureumKanata.hanahnmatae = "안마태";
+org.haneol.inputmethod.GureumKanata.han3-2011 = "세벌식 2011";
+org.haneol.inputmethod.GureumKanata.han3-2012 = "세벌식 2012";
+org.haneol.inputmethod.GureumKanata.han3finalnoshift = "세벌식 최종 순아래";
 
-CFBundleName = "구름";
-CFBundleDisplayName = "구름 입력기";
+CFBundleName = "구름 Kanata";
+CFBundleDisplayName = "구름 Kanata 입력기";

@@ -59,7 +59,7 @@ public enum UpdateMode {
 
 /// 입력기의 환경 설정을 담당하는 오브젝트.
 public class Configuration: UserDefaults {
-    public static let sharedSuiteName = "org.youknowone.Gureum"
+    public static let sharedSuiteName = "org.haneol.GureumKanata"
     public static var shared = Configuration()
 
     var enableCapslockToToggleInputMode: Bool = false
@@ -87,8 +87,8 @@ public class Configuration: UserDefaults {
         super.init(suiteName: suiteName)
 
         register(defaults: [
-            ConfigurationName.lastHangulInputMode: "org.youknowone.inputmethod.Gureum.han2",
-            ConfigurationName.lastRomanInputMode: "org.youknowone.inputmethod.Gureum.qwerty",
+            ConfigurationName.lastHangulInputMode: "org.haneol.inputmethod.GureumKanata.han2",
+            ConfigurationName.lastRomanInputMode: "org.haneol.inputmethod.GureumKanata.qwerty",
 
             ConfigurationName.inputModeSearchKey: Configuration.convertShortcutToConfiguration((.return, .option)),
             ConfigurationName.optionKeyBehavior: 1,

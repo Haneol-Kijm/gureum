@@ -17,37 +17,39 @@ import Foundation
 /// 각 케이스의 원시 값은 그에 대응하는 input method의 번들 식별자를 나타낸다.
 enum GureumInputSource: String {
     /// 로마자 시스템 자판.
-    case system = "org.youknowone.inputmethod.Gureum.system"
+    case system = "org.haneol.inputmethod.GureumKanata.system"
     /// 로마자 쿼티 자판.
-    case qwerty = "org.youknowone.inputmethod.Gureum.qwerty"
+    case qwerty = "org.haneol.inputmethod.GureumKanata.qwerty"
     /// 로마자 드보락 자판.
-    case dvorak = "org.youknowone.inputmethod.Gureum.dvorak"
+    case dvorak = "org.haneol.inputmethod.GureumKanata.dvorak"
     /// 로마자 콜맥 자판.
-    case colemak = "org.youknowone.inputmethod.Gureum.colemak"
+    case colemak = "org.haneol.inputmethod.GureumKanata.colemak"
     /// 한글 두벌식 자판.
-    case han2 = "org.youknowone.inputmethod.Gureum.han2"
+    case han2 = "org.haneol.inputmethod.GureumKanata.han2"
+    /// 한글 두벌식 Colemak-DH Matrix 자판.
+    case han2ColemakDH = "org.haneol.inputmethod.GureumKanata.han2colemakdh"
     /// 한글 두벌식 옛글 자판.
-    case han2Classic = "org.youknowone.inputmethod.Gureum.han2classic"
+    case han2Classic = "org.haneol.inputmethod.GureumKanata.han2classic"
     /// 한글 세벌식 최종 자판.
-    case han3Final = "org.youknowone.inputmethod.Gureum.han3final"
+    case han3Final = "org.haneol.inputmethod.GureumKanata.han3final"
     /// 한글 세벌식 390 자판.
-    case han390 = "org.youknowone.inputmethod.Gureum.han390"
+    case han390 = "org.haneol.inputmethod.GureumKanata.han390"
     /// 한글 세벌식 순아래 자판.
-    case han3NoShift = "org.youknowone.inputmethod.Gureum.han3noshift"
+    case han3NoShift = "org.haneol.inputmethod.GureumKanata.han3noshift"
     /// 한글 세벌식 옛글 자판.
-    case han3Classic = "org.youknowone.inputmethod.Gureum.han3classic"
+    case han3Classic = "org.haneol.inputmethod.GureumKanata.han3classic"
     /// 한글 세벌식 두벌식 배치 자판.
-    case han3Layout2 = "org.youknowone.inputmethod.Gureum.han3layout2"
+    case han3Layout2 = "org.haneol.inputmethod.GureumKanata.han3layout2"
     /// 한글 안마태 자판.
-    case hanAhnmatae = "org.youknowone.inputmethod.Gureum.hanahnmatae"
+    case hanAhnmatae = "org.haneol.inputmethod.GureumKanata.hanahnmatae"
     /// 한글 로마자 자판.
-    case hanRoman = "org.youknowone.inputmethod.Gureum.hanroman"
+    case hanRoman = "org.haneol.inputmethod.GureumKanata.hanroman"
     /// 한글 세벌식 최종 순아래 자판.
-    case han3FinalNoShift = "org.youknowone.inputmethod.Gureum.han3finalnoshift"
+    case han3FinalNoShift = "org.haneol.inputmethod.GureumKanata.han3finalnoshift"
     /// 한글 세벌식 2011 자판.
-    case han3_2011 = "org.youknowone.inputmethod.Gureum.han3-2011"
+    case han3_2011 = "org.haneol.inputmethod.GureumKanata.han3-2011"
     /// 한글 세벌식 2012 자판.
-    case han3_2012 = "org.youknowone.inputmethod.Gureum.han3-2012"
+    case han3_2012 = "org.haneol.inputmethod.GureumKanata.han3-2012"
 }
 
 // MARK: - GureumComposer 클래스
@@ -154,7 +156,7 @@ extension GureumComposer {
                 delegate = romanComposer
                 Configuration.shared.lastRomanInputMode = newValue
             } else {
-                guard let keyboardIdentifier = GureumInputSource(rawValue: newValue)?.keyboardIdentifier else {
+                guard let inputSource = GureumInputSource(rawValue: newValue) else {
                     #if DEBUG
                         assertionFailure()
                     #endif
@@ -162,7 +164,7 @@ extension GureumComposer {
                 }
                 delegate = hangulComposer
                 // 단축키 지원을 위해 마지막 자판을 기억
-                hangulComposer.setKeyboard(identifier: keyboardIdentifier)
+                hangulComposer.setKeyboard(identifier: inputSource.keyboardIdentifier, keyMapType: inputSource.hangulKeyMapType)
                 Configuration.shared.lastHangulInputMode = newValue
             }
 
@@ -312,6 +314,8 @@ extension GureumInputSource {
             return "colemak"
         case .han2:
             return "2-full"
+        case .han2ColemakDH:
+            return "2-full"
         case .han2Classic:
             return "2y-full"
         case .han3Final:
@@ -334,6 +338,15 @@ extension GureumInputSource {
             return "3-2011"
         case .han3_2012:
             return "3-2012"
+        }
+    }
+
+    var hangulKeyMapType: HangulKeyMapType {
+        switch self {
+        case .han2ColemakDH:
+            return .colemakDH
+        default:
+            return .qwerty
         }
     }
 }

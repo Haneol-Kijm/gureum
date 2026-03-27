@@ -186,6 +186,87 @@ let KeyMapUpper = [
     nil, nil, "~",
 ]
 
+private let ColemakDHMatrixToQwertyLower: [String: String] = [
+    "f": "e",
+    "p": "r",
+    "b": "t",
+    "j": "y",
+    "l": "u",
+    "u": "i",
+    "y": "o",
+    ";": "p",
+    "r": "s",
+    "s": "d",
+    "t": "f",
+    "m": "h",
+    "n": "j",
+    "e": "k",
+    "i": "l",
+    "o": ";",
+    "d": "v",
+    "v": "b",
+    "k": "n",
+    "h": "m",
+]
+
+private let ColemakDHMatrixToQwertyUpper: [String: String] = [
+    "F": "E",
+    "P": "R",
+    "B": "T",
+    "J": "Y",
+    "L": "U",
+    "U": "I",
+    "Y": "O",
+    ":": "P",
+    "R": "S",
+    "S": "D",
+    "T": "F",
+    "M": "H",
+    "N": "J",
+    "E": "K",
+    "I": "L",
+    "O": ":",
+    "D": "V",
+    "V": "B",
+    "K": "N",
+    "H": "M",
+]
+
+private func remappedKeyMap(_ base: [String?], using mapping: [String: String]) -> [String?] {
+    return base.map { key in
+        guard let key = key else {
+            return nil
+        }
+        return mapping[key] ?? key
+    }
+}
+
+let KeyMapLowerColemakDH = remappedKeyMap(KeyMapLower, using: ColemakDHMatrixToQwertyLower)
+let KeyMapUpperColemakDH = remappedKeyMap(KeyMapUpper, using: ColemakDHMatrixToQwertyUpper)
+
+enum HangulKeyMapType {
+    case qwerty
+    case colemakDH
+
+    var lower: [String?] {
+        switch self {
+        case .qwerty:
+            return KeyMapLower
+        case .colemakDH:
+            return KeyMapLowerColemakDH
+        }
+    }
+
+    var upper: [String?] {
+        switch self {
+        case .qwerty:
+            return KeyMapUpper
+        case .colemakDH:
+            return KeyMapUpperColemakDH
+        }
+    }
+}
+
 let KeyMapReversed = {
     var map: [String: (KeyCode, NSEvent.ModifierFlags)] = [:]
     for (rawValue, key) in KeyMapLower.enumerated() {

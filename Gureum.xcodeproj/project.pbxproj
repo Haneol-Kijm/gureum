@@ -124,6 +124,7 @@
 		CE21ADF6280A0FC800B54371 /* Fuse in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADF5280A0FC800B54371 /* Fuse */; };
 		CE21ADFF280A11A600B54371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CE21ADFE280A11A600B54371 /* Alamofire */; };
 		CE21AE09280B06B000B54371 /* TISInputSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE21AE05280B068B00B54371 /* TISInputSource.swift */; };
+		CE21AE11280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
 		CE21AE10280B0B2200B54371 /* SwiftUp in Frameworks */ = {isa = PBXBuildFile; productRef = CE21AE0F280B0B2200B54371 /* SwiftUp */; };
 		CE31CC0A28109975004659B0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = CE31CC0928109975004659B0 /* FirebaseCrashlytics */; };
 		CE31CC0D28109B95004659B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31CC0C28109B95004659B0 /* GoogleService-Info.plist */; };
@@ -417,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE21ADE3280A037400B54371 /* MASShortcut in Frameworks */,
+				CE21AE11280B0B2200B54371 /* SwiftUp in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +752,7 @@
 			name = Preferences;
 			packageProductDependencies = (
 				CE21ADD8280A026300B54371 /* MASShortcut */,
+				CE21AE0F280B0B2200B54371 /* SwiftUp */,
 			);
 			productName = Preferences;
 			productReference = 382E68641A1314D900031D1D /* Preferences.prefPane */;
@@ -1027,7 +1030,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${PROJECT_DIR}\ntag=`git describe --tags`\ntag=${tag#GureumKIM-}\nif [ $CONFIGURATION != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
+			shellScript = "cd ${PROJECT_DIR}\ntag=$(git describe --tags --always --dirty 2>/dev/null || git rev-parse --short HEAD)\ntag=${tag#GureumKIM-}\nif [ -z \"$tag\" ]; then\n    tag=0.0.0\nfi\nif [ \"$CONFIGURATION\" != \"Release\" ]; then\n    tag=\"$tag\"-Debug\nfi\necho \"VERSION = $tag\" > OSX/Version.xcconfig\n";
 		};
 		38E9024E21344640005DF76A /* Print environment variables */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1245,7 +1248,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
+				PRODUCT_BUNDLE_IDENTIFIER = org.haneol.inputmethod.GureumKanata;
 				PRODUCT_NAME = Gureum;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				WRAPPER_EXTENSION = app;
@@ -1269,7 +1272,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.youknowone.inputmethod.Gureum;
+				PRODUCT_BUNDLE_IDENTIFIER = org.haneol.inputmethod.GureumKanata;
 				PRODUCT_NAME = Gureum;
 				SWIFT_OBJC_BRIDGING_HEADER = OSX/Bridge.h;
 				WRAPPER_EXTENSION = app;
@@ -1368,7 +1371,7 @@
 				CODE_SIGN_ENTITLEMENTS = OSX/Gureum.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = "${VERSION}";
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -1410,7 +1413,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = "${VERSION}";
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 9384JEL3M9;
 				DYLIB_COMPATIBILITY_VERSION = 1;

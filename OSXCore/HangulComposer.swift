@@ -98,6 +98,7 @@ final class HangulComposer: NSObject, Composer {
 
     let inputContext: HGInputContext
     let configuration = Configuration.shared
+    private var keyMapType: HangulKeyMapType = .qwerty
 
     init(type: HangulComposer.ComposerType) {
         _commitString = ""
@@ -214,9 +215,9 @@ final class HangulComposer: NSObject, Composer {
         var string = string!
         // 한글 입력에서 캡스락 무시
         if flags.contains(.shift) {
-            string = KeyMapUpper[keyCode.rawValue] ?? string
+            string = keyMapType.upper[keyCode.rawValue] ?? string
         } else {
-            string = KeyMapLower[keyCode.rawValue] ?? string
+            string = keyMapType.lower[keyCode.rawValue] ?? string
         }
         let handled = inputContext.process(string.unicodeScalars.first!.value)
         let ucsString = inputContext.commitUCSString
@@ -270,7 +271,8 @@ extension HangulComposer {
     /// 현재 context의 배열을 바꾼다.
     ///
     /// - Parameter identifier: `libhangul`의 `hangul_ic_select_keyboard`를 참고한다.
-    func setKeyboard(identifier: String) {
+    func setKeyboard(identifier: String, keyMapType: HangulKeyMapType = .qwerty) {
+        self.keyMapType = keyMapType
         if configuration.hangulForceStrictCombinationRule, identifier == "39" || identifier == "3f" {
             let strictCombinationIdentifier = "\(identifier)s"
             inputContext.setKeyboardWithIdentifier(strictCombinationIdentifier)

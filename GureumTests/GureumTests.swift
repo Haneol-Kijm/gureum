@@ -20,7 +20,7 @@ extension NSUserNotificationCenter {
 }
 
 class GureumTests: XCTestCase {
-    static let domainName = "org.youknowone.Gureum.test"
+    static let domainName = "org.haneol.GureumKanata.test"
     lazy var moderate: VirtualApp = ModerateApp()
     // lazy var xcode: VirtualApp = XcodeApp()
     lazy var terminal: VirtualApp! = nil
@@ -29,7 +29,7 @@ class GureumTests: XCTestCase {
     lazy var apps: [VirtualApp] = [moderate]
 
     override class func setUp() {
-        Configuration.shared = Configuration(suiteName: "org.youknowone.Gureum.test")!
+        Configuration.shared = Configuration(suiteName: "org.haneol.GureumKanata.test")!
         super.setUp()
     }
 
@@ -76,7 +76,7 @@ class GureumTests: XCTestCase {
         Configuration.shared.inputModeExchangeKey = Configuration.Shortcut(.space, .shift)
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputFlags(.capsLock)
 
             app.inputText(" ", key: .space, modifiers: .shift)
@@ -88,12 +88,20 @@ class GureumTests: XCTestCase {
     func testLayoutChangeCommit() {
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.han2", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.han2", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputKey(.ansiG)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
             app.inputFlags(.capsLock)
             XCTAssertEqual("ㅎ", app.client.string, "buffer: \(app.client.string), app: \(app)")
         }
+    }
+
+    func testHan2ColemakDHKeyMap() {
+        XCTAssertEqual("d", HangulKeyMapType.colemakDH.lower[KeyCode.ansiS.rawValue])
+        XCTAssertEqual("k", HangulKeyMapType.colemakDH.lower[KeyCode.ansiE.rawValue])
+        XCTAssertEqual("n", HangulKeyMapType.colemakDH.lower[KeyCode.ansiK.rawValue])
+        XCTAssertEqual("m", HangulKeyMapType.colemakDH.lower[KeyCode.ansiH.rawValue])
+        XCTAssertEqual("D", HangulKeyMapType.colemakDH.upper[KeyCode.ansiS.rawValue])
     }
 
     func testSearchEmoticonTable() {
@@ -390,7 +398,7 @@ class GureumTests: XCTestCase {
     func testDvorak() {
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.dvorak", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.dvorak", forTag: kTextServiceInputModePropertyTag, client: app.client)
 
             app.inputKey(.ansiJ)
             app.inputKey(.ansiD)
@@ -404,7 +412,7 @@ class GureumTests: XCTestCase {
     func test3Number() {
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputKey(.ansiK, modifiers: .shift)
             XCTAssertEqual("2", app.client.string, "buffer: \(app.client.string) app: \(app)")
             XCTAssertEqual("", app.client.markedString(), "buffer: \(app.client.string) app: \(app)")
@@ -414,7 +422,7 @@ class GureumTests: XCTestCase {
     func testBlock() {
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.qwerty", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputKey(.ansiM)
             app.inputKey(.ansiF)
             app.inputKey(.ansiS)
@@ -437,7 +445,7 @@ class GureumTests: XCTestCase {
     func test3final() {
         for app in apps {
             app.client.string = ""
-            app.controller.setValue("org.youknowone.inputmethod.Gureum.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
+            app.controller.setValue("org.haneol.inputmethod.GureumKanata.han3final", forTag: kTextServiceInputModePropertyTag, client: app.client)
             app.inputKey(.ansiM)
             app.inputKey(.ansiF)
             app.inputKey(.ansiS)
@@ -748,7 +756,7 @@ class Han3FinalNoShiftTests: XCTestCase {
     let app = ModerateApp()
 
     override class func setUp() {
-        Configuration.shared = Configuration(suiteName: "org.youknowone.Gureum.test")!
+        Configuration.shared = Configuration(suiteName: "org.haneol.GureumKanata.test")!
         super.setUp()
     }
 
