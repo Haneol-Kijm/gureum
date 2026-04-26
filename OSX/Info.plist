@@ -453,7 +453,7 @@
 	<key>NSUserNotificationAlertStyle</key>
 	<string>alert</string>
 	<key>TISInputSourceID</key>
-	<string>org.youknowone.inputmethod.Korean</string>
+	<string>org.haneol.inputmethod.GureumKanata.Korean</string>
 	<key>TISIntendedLanguage</key>
 	<string>ko</string>
 	<key>tsInputMethodCharacterRepertoireKey</key>
